@@ -1,0 +1,81 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: transparent;
+  /* The desktop shows through everywhere except the character itself. */
+  user-select: none;
+  cursor: default;
+}
+
+#pet {
+  position: absolute;
+  left: 0;
+  top: 0;
+  /* Anchor transforms to the feet so mirroring flips in place. */
+  transform-origin: bottom center;
+  will-change: left, top, transform;
+}
+
+#sprite {
+  display: block;
+  height: 130px; /* overridden from config at runtime */
+  width: auto;
+  pointer-events: auto;
+  -webkit-user-drag: none;
+  filter: drop-shadow(0 4px 3px rgba(0, 0, 0, 0.18));
+}
+
+/* Facing left = mirror horizontally. */
+#pet.face-left #sprite {
+  transform: scaleX(-1);
+}
+
+/* A gentle squish while being held. */
+#pet.grabbed #sprite {
+  transform: scale(1.06, 0.94);
+}
+#pet.grabbed.face-left #sprite {
+  transform: scale(-1.06, 0.94);
+}
+
+#bubble {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translate(-50%, -6px);
+  max-width: 220px;
+  width: max-content;
+  padding: 9px 13px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.97);
+  color: #4a4a4a;
+  font: 14px/1.35 -apple-system, "Segoe UI", "Hiragino Sans", "Yu Gothic UI",
+    Roboto, sans-serif;
+  text-align: center;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.16);
+  border: 2px solid #ffe0ea;
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* little tail on the speech bubble */
+#bubble::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 7px solid transparent;
+  border-top-color: rgba(255, 255, 255, 0.97);
+}
+
+#bubble.hidden {
+  opacity: 0;
+  transform: translate(-50%, 2px);
+  pointer-events: none;
+}
