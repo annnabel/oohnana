@@ -7,9 +7,58 @@ to your desktop.
 
 ![oohnana loop](preview/oohnana-loop.webp)
 
-## Install on your desktop
+## 📥 Download & run (no coding needed)
 
-Works on macOS, Windows, and Linux. Takes about five minutes.
+Grab the file for your computer from the
+**[Releases page](https://github.com/annnabel/oohnana/releases/latest)** and
+open it — no Node, no terminal, nothing to install first.
+
+| Your computer | Download this file        | How to open it                                   |
+|---------------|---------------------------|--------------------------------------------------|
+| **Windows**   | `oohnana-*-portable.exe`  | Double-click it. That's the whole thing — nothing installs. |
+| **Windows**   | `oohnana-*-setup.exe`     | Prefer a Start-menu shortcut? Use this installer instead. |
+| **macOS**     | `oohnana-*.dmg`           | Open it, drag **oohnana** to Applications, then launch it. |
+| **Linux**     | `oohnana-*.AppImage`      | Right-click → Properties → allow "execute", then double-click. |
+
+The buddy appears and starts wandering your screen. To quit: right-click the
+character and choose **Quit**, or press **Ctrl+Shift+Q** (⌘⇧Q on macOS).
+
+> **First-launch safety prompt (this is normal).** The app is *unsigned* —
+> code-signing certificates cost money, and this is a free hobby app — so your
+> OS will warn you the first time:
+> - **Windows:** "Windows protected your PC" → click **More info** → **Run
+>   anyway**.
+> - **macOS:** if it says the app "can't be opened", **right-click** the app →
+>   **Open** → **Open**. You only do this once.
+>
+> There's no network access in the app at all (see [Security notes](#security-notes)),
+> so once it's open it just sits on your screen and does its thing.
+
+## 🛠️ Build the app yourself
+
+Want to produce those download files (e.g. to share your own build)? With
+[Node.js](https://nodejs.org) installed:
+
+```sh
+npm ci
+npm run dist          # builds for the computer you're on
+```
+
+The finished file lands in the `dist/` folder. You can only build the
+**Windows** `.exe` on Windows and the **macOS** `.dmg` on a Mac — each OS makes
+its own file. To build all three at once, push a version tag and let GitHub do
+it for you: tag `v1.0.1`, push it, and the
+[build workflow](.github/workflows/build.yml) compiles Windows, macOS, and
+Linux on their own machines and posts every file to the Releases page. (Run it
+by hand any time from the repo's **Actions** tab.)
+
+Platform-specific builds are also available: `npm run dist:win`,
+`npm run dist:mac`, `npm run dist:linux`.
+
+## Run from source
+
+Prefer to run it straight from the code (or hack on it)? Takes about five
+minutes.
 
 ### 1. Install Node.js
 
