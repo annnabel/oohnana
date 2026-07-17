@@ -1,0 +1,13 @@
+{
+  "name": "oohnana",
+  "version": "1.0.0",
+  "description": "A little desktop buddy that wanders your screen and shares positive affirmations.",
+  "main": "src/main/main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^31.0.0"
+  }
+}

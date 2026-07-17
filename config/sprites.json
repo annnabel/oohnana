@@ -1,0 +1,15 @@
+{
+  "//": "On-screen height of the character in pixels. Width scales automatically.",
+  "height": 130,
+
+  "//states": "Map each animation state to a file inside the sprites/ folder.",
+  "//states2": "If a file is missing, the app falls back to built-in placeholder art.",
+  "states": {
+    "idle": "idle.gif",
+    "walk": "walk.gif",
+    "happy": "happy.png",
+    "grabbed": "happy.png",
+    "peek": "peek.png",
+    "sleep": "sleep.png"
+  }
+}
