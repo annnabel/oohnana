@@ -3,11 +3,74 @@
   "version": "1.0.0",
   "description": "A little desktop buddy that wanders your screen and shares positive affirmations.",
   "main": "src/main/main.js",
+  "author": "annnabel",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "prepare:sprites": "node scripts/prepare-sprites.js",
+    "dist": "npm run prepare:sprites && electron-builder",
+    "dist:win": "npm run prepare:sprites && electron-builder --win",
+    "dist:mac": "npm run prepare:sprites && electron-builder --mac",
+    "dist:linux": "npm run prepare:sprites && electron-builder --linux"
   },
   "license": "MIT",
   "devDependencies": {
-    "electron": "^31.0.0"
+    "electron": "^31.0.0",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "com.oohnana.buddy",
+    "productName": "oohnana",
+    "copyright": "Copyright © annnabel",
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "src/**/*",
+      "config/**/*",
+      "sprites/**/*",
+      "!**/*.map",
+      "!**/README.md"
+    ],
+    "asarUnpack": [
+      "config/**/*",
+      "sprites/**/*"
+    ],
+    "win": {
+      "target": [
+        "portable",
+        "nsis"
+      ],
+      "icon": "build/icon.png"
+    },
+    "portable": {
+      "artifactName": "oohnana-${version}-portable.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "artifactName": "oohnana-${version}-setup.${ext}"
+    },
+    "mac": {
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "icon": "build/icon.png",
+      "category": "public.app-category.entertainment",
+      "artifactName": "oohnana-${version}-${arch}.${ext}"
+    },
+    "dmg": {
+      "artifactName": "oohnana-${version}-${arch}.${ext}"
+    },
+    "linux": {
+      "target": [
+        "AppImage"
+      ],
+      "icon": "build/icon.png",
+      "category": "Utility",
+      "artifactName": "oohnana-${version}-${arch}.${ext}"
+    }
   }
 }
