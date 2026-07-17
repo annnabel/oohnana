@@ -76,8 +76,13 @@ function createWindow() {
       preload: path.join(__dirname, 'preload.js'),
       contextIsolation: true,
       nodeIntegration: false,
+      sandbox: true,
     },
   });
+
+  // The renderer only ever shows local files — never navigate or open windows.
+  win.webContents.setWindowOpenHandler(() => ({ action: 'deny' }));
+  win.webContents.on('will-navigate', (e) => e.preventDefault());
 
   // Float above normal windows (including most full-screen apps).
   win.setAlwaysOnTop(true, 'screen-saver');
